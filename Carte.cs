@@ -6,9 +6,21 @@ namespace Ex._1_Laborator7_
 {
     class Carte
     {
+        public enum SimbolCarte
+        {
+            InimaRosie,
+            InimaNeagra,
+            Romb,
+            Trefla
+        }
         private SimbolCarte simbol;
         private int numar;
 
+        /// <summary>
+        /// Seteaza simbolul cartii.
+        /// </summary>
+        //public  SimbolCarte { get; set; }
+        
         /// <summary>
         /// Creeaza carte.
         /// </summary>
@@ -25,8 +37,7 @@ namespace Ex._1_Laborator7_
         /// <returns></returns>
         public SimbolCarte GetSimbol()
         {
-            SimbolCarte verificareSimbol = this.simbol;
-            return verificareSimbol;
+            return this.simbol;
         }
         /// <summary>
         /// Returneaza numarul unei carti.
@@ -34,8 +45,7 @@ namespace Ex._1_Laborator7_
         /// <returns></returns>
         public int GetNumar()
         {
-            int numar = this.numar;
-            return numar;
+            return this.numar;
         }
         /// <summary>
         /// Tipareste o carte.

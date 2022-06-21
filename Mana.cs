@@ -6,56 +6,26 @@ namespace Ex._1_Laborator7_
 {
     class Mana
     {
-        private Carte[] mana = new Carte[5];
+        private Carte[] carti = new Carte[5];
         /// <summary>
         /// Creaza o mana de 5 carti.
         /// </summary>
         /// <param name="mana"></param>
-        public Mana(Carte[] mana)
+        public Mana(Carte[] carti)
         {
-            this.mana = mana;
+            this.carti = carti;
         }
         /// <summary>
         /// Returneaza tipul mainii.
         /// </summary>
         public void GetTipMana()
         {
-            SimbolCarte verificareSimbol = new SimbolCarte();
-            int numerotareInimaNeagra = 0;
-            int numerotareInimaRosie = 0;
-            int numerotareNumar = 0;
-            int[] vectorNumere = new int[5];
+            
+            int numerotareInimaNeagra = CheckRoyalFlush();
+            int numerotareInimaRosie = CheckStraightFlush();
+            int numerotareNumarCarte = CheckFourOfAKind();
 
-            int i = 0;
-            foreach (Carte carte in mana)
-            {
-                verificareSimbol = carte.GetSimbol();
-                if (verificareSimbol == SimbolCarte.InimaNeagra)
-                {
-                    numerotareInimaNeagra++;
-                }
-                if (verificareSimbol == SimbolCarte.InimaRosie)
-                {
-                    numerotareInimaRosie++;
-                }
-
-                vectorNumere[i] = carte.GetNumar();
-                i++;
-            }
-
-            for (int k = 0; k < 2; k++)
-            {
-                numerotareNumar = 0;
-                for (int j = 0; j < vectorNumere.Length; j++)
-                {
-                    if (vectorNumere[k] == vectorNumere[j])
-                    {
-                        numerotareNumar++;
-                    }
-                }
-            }
-
-            if (numerotareNumar == 4)
+            if (numerotareNumarCarte == 4)
             {
                 Console.WriteLine("Four of a kind");
                 Console.WriteLine();
@@ -76,13 +46,64 @@ namespace Ex._1_Laborator7_
                 Console.WriteLine();
             }
         }
+        private int CheckRoyalFlush()
+        {
+            int numerotareInimaNeagra = 0;
+            Carte.SimbolCarte verificareSimbol = new Carte.SimbolCarte();
+            foreach (Carte carte in carti)
+            {
+                verificareSimbol = carte.GetSimbol();
+                if (verificareSimbol == Carte.SimbolCarte.InimaNeagra)
+                {
+                    numerotareInimaNeagra++;
+                }
+            }
+            return numerotareInimaNeagra;
+        }
+        private int CheckStraightFlush ()
+        {
+            int numerotareInimaRosie = 0;
+            Carte.SimbolCarte verificareSimbol = new Carte.SimbolCarte();
+            foreach (Carte carte in carti)
+            {
+                verificareSimbol = carte.GetSimbol();
+                if (verificareSimbol == Carte.SimbolCarte.InimaRosie)
+                {
+                    numerotareInimaRosie++;
+                }
+            }
+            return numerotareInimaRosie;
+        }
+        private int CheckFourOfAKind()
+        {
+            int numerotareNumarCarte = 0;
+            int[] vectorNumereMana = new int[5];
+            int i = 0;
+            foreach (Carte carte in carti)
+            {
+                vectorNumereMana[i] = carte.GetNumar();
+                i++;
+            }
+            for (int k = 0; k < 2; k++)
+            {
+                numerotareNumarCarte = 0;
+                for (int j = 0; j < vectorNumereMana.Length; j++)
+                {
+                    if (vectorNumereMana[k] == vectorNumereMana[j])
+                    {
+                        numerotareNumarCarte++;
+                    }
+                }
+            }
+            return numerotareNumarCarte;
+        }
         /// <summary>
         /// Tipareste o mana.
         /// </summary>
         public void Tipareste()
         {
             Console.WriteLine("Mana: ");
-            foreach (Carte carte in mana)
+            foreach (Carte carte in carti)
             {
                 carte.Tipareste();
             }

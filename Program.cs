@@ -43,10 +43,10 @@ namespace Ex._1_Laborator7_
 
             ////MAINI GATA FORMATE
 
-            //Carte inimaNeagra1 = new Carte(SimbolCarte.InimaNeagra, 1);
-            //Carte inimaRosie2 = new Carte(SimbolCarte.InimaRosie, 2);
-            //Carte romb3 = new Carte(SimbolCarte.Romb, 3);
-            //Carte trefla4 = new Carte(SimbolCarte.Trefla, 4);
+            //Carte inimaNeagra1 = new Carte(Carte.SimbolCarte.InimaNeagra, 1);
+            //Carte inimaRosie2 = new Carte(Carte.SimbolCarte.InimaRosie, 2);
+            //Carte romb3 = new Carte(Carte.SimbolCarte.Romb, 3);
+            //Carte trefla4 = new Carte(Carte.SimbolCarte.Trefla, 4);
 
             //Carte[] inimaNeagra = new Carte[5];
             //for (int i = 0; i < inimaNeagra.Length; i++)
@@ -107,22 +107,22 @@ namespace Ex._1_Laborator7_
                 Console.WriteLine("Introduceti simbolul cartii: IN(Inima neagra), IR(Inima rosie), R(Romb), T(Trefla):");
                 introducereSimbol = Console.ReadLine().ToUpper(); ;
             }
-            SimbolCarte simbol = new SimbolCarte();
+            Carte.SimbolCarte simbol = new Carte.SimbolCarte();
             if (introducereSimbol == "IN")
             {
-                simbol = SimbolCarte.InimaNeagra;
+                simbol = Carte.SimbolCarte.InimaNeagra;
             }
             else if (introducereSimbol == "IR")
             {
-                simbol = SimbolCarte.InimaRosie;
+                simbol = Carte.SimbolCarte.InimaRosie;
             }
             else if (introducereSimbol == "R")
             {
-                simbol = SimbolCarte.Romb;
+                simbol = Carte.SimbolCarte.Romb;
             }
             else
             {
-                simbol = SimbolCarte.Trefla;
+                simbol = Carte.SimbolCarte.Trefla;
             }
             Console.WriteLine("Introduceti numarul cartii cu valoare intre 1 si 14");
             int numar = int.Parse(Console.ReadLine());
@@ -140,21 +140,23 @@ namespace Ex._1_Laborator7_
             Console.WriteLine("Introduceti 5 carti pentru a crea o mana.");
             Carte[] carteVector = new Carte[5];
             Mana mana = new Mana(carteVector);
+            Carte[] carteVectorVerificare = new Carte[5];
             for (int i = 0; i < carteVector.Length; i++)
             {
                 Console.WriteLine($"Introduceti cartea {i + 1} ");
                 carteVector[i] = CreareCarte();
-
-            }
-            for (int i = 0; i < carteVector.Length; i++)
-            {
                 for (int j = 0; j < carteVector.Length; j++)
                 {
-                    if (j != i && carteVector[i].GetSimbol() == carteVector[j].GetSimbol() && carteVector[j].GetNumar() == carteVector[i].GetNumar())
+                    if (carteVector[i]!=null&&carteVector[j]!=null)
                     {
-                        Console.WriteLine("Cartile trebuie sa fie diferite!");
-                        mana = CreareMana();
+                        if (j != i && carteVector[i].GetSimbol() == carteVector[j].GetSimbol() && carteVector[j].GetNumar() == carteVector[i].GetNumar())
+                        {
+                            Console.WriteLine("Cartile trebuie sa fie diferite!");
+                            i = j;
+                            break;
+                        }
                     }
+                    
                 }
             }
             return mana;
