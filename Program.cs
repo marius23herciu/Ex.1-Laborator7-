@@ -152,7 +152,14 @@ namespace Ex._1_Laborator7_
                         if (j != i && carteVector[i].GetSimbol() == carteVector[j].GetSimbol() && carteVector[j].GetNumar() == carteVector[i].GetNumar())
                         {
                             Console.WriteLine("Cartile trebuie sa fie diferite!");
-                            i = j;
+                            if (i>0)
+                            {
+                                i--;
+                            }
+                            else
+                            {
+                                i = 0;
+                            }
                             break;
                         }
                     }

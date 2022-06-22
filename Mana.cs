@@ -20,12 +20,12 @@ namespace Ex._1_Laborator7_
         /// </summary>
         public void GetTipMana()
         {
-            
+
             int numerotareInimaNeagra = CheckRoyalFlush();
             int numerotareInimaRosie = CheckStraightFlush();
-            int numerotareNumarCarte = CheckFourOfAKind();
+            int verificareNUmarIdentic = CheckFourOfAKind();
 
-            if (numerotareNumarCarte == 4)
+            if (verificareNUmarIdentic == 4)
             {
                 Console.WriteLine("Four of a kind");
                 Console.WriteLine();
@@ -60,7 +60,7 @@ namespace Ex._1_Laborator7_
             }
             return numerotareInimaNeagra;
         }
-        private int CheckStraightFlush ()
+        private int CheckStraightFlush()
         {
             int numerotareInimaRosie = 0;
             Carte.SimbolCarte verificareSimbol = new Carte.SimbolCarte();
@@ -76,26 +76,24 @@ namespace Ex._1_Laborator7_
         }
         private int CheckFourOfAKind()
         {
-            int numerotareNumarCarte = 0;
-            int[] vectorNumereMana = new int[5];
-            int i = 0;
-            foreach (Carte carte in carti)
+            int verificareNUmarIdentic = 0;
+            for (int i = 0; i < carti.Length; i++)
             {
-                vectorNumereMana[i] = carte.GetNumar();
-                i++;
-            }
-            for (int k = 0; k < 2; k++)
-            {
-                numerotareNumarCarte = 0;
-                for (int j = 0; j < vectorNumereMana.Length; j++)
+                verificareNUmarIdentic = 0;
+                for (int j = 0; j < carti.Length; j++)
                 {
-                    if (vectorNumereMana[k] == vectorNumereMana[j])
+                    if (carti[i].GetNumar() == carti[j].GetNumar())
                     {
-                        numerotareNumarCarte++;
+                        verificareNUmarIdentic++;
                     }
                 }
+                if (verificareNUmarIdentic == 4)
+                {
+                    break;
+                }
             }
-            return numerotareNumarCarte;
+
+            return verificareNUmarIdentic;
         }
         /// <summary>
         /// Tipareste o mana.
