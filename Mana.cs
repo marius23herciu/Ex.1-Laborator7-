@@ -18,7 +18,7 @@ namespace Ex._1_Laborator7_
         /// <summary>
         /// Returneaza tipul mainii.
         /// </summary>
-        public void GetTipMana()
+        public Carte[] GetTipMana()
         {
 
             int numerotareInimaNeagra = CheckRoyalFlush();
@@ -29,31 +29,34 @@ namespace Ex._1_Laborator7_
             {
                 Console.WriteLine("Four of a kind");
                 Console.WriteLine();
+                Carte[] fourOfAKind = this.carti;
+                return fourOfAKind;
             }
             else if (numerotareInimaNeagra == 5)
             {
                 Console.WriteLine("Royal flush");
                 Console.WriteLine();
+                Carte[] royalFlush = this.carti;
+                return royalFlush;
             }
             else if (numerotareInimaRosie == 5)
             {
                 Console.WriteLine("Straight flush");
                 Console.WriteLine();
+                Carte[] straightFlush = this.carti;
+                return straightFlush;
             }
-            else
-            {
-                Console.WriteLine("Mana comuna");
-                Console.WriteLine();
-            }
+            Console.WriteLine("Mana comuna");
+            Console.WriteLine();
+            Carte[] manaComuna = this.carti;
+            return manaComuna;
         }
         private int CheckRoyalFlush()
         {
             int numerotareInimaNeagra = 0;
-            Carte.SimbolCarte verificareSimbol = new Carte.SimbolCarte();
             foreach (Carte carte in carti)
             {
-                verificareSimbol = carte.GetSimbol();
-                if (verificareSimbol == Carte.SimbolCarte.InimaNeagra)
+                if (carte.GetSimbol() == Carte.SimbolCarte.InimaNeagra)
                 {
                     numerotareInimaNeagra++;
                 }
@@ -63,11 +66,9 @@ namespace Ex._1_Laborator7_
         private int CheckStraightFlush()
         {
             int numerotareInimaRosie = 0;
-            Carte.SimbolCarte verificareSimbol = new Carte.SimbolCarte();
             foreach (Carte carte in carti)
             {
-                verificareSimbol = carte.GetSimbol();
-                if (verificareSimbol == Carte.SimbolCarte.InimaRosie)
+                if (carte.GetSimbol() == Carte.SimbolCarte.InimaRosie)
                 {
                     numerotareInimaRosie++;
                 }

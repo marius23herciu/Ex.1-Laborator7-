@@ -20,7 +20,7 @@ namespace Ex._1_Laborator7_
         /// Seteaza simbolul cartii.
         /// </summary>
         //public  SimbolCarte { get; set; }
-        
+
         /// <summary>
         /// Creeaza carte.
         /// </summary>

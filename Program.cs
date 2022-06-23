@@ -147,12 +147,12 @@ namespace Ex._1_Laborator7_
                 carteVector[i] = CreareCarte();
                 for (int j = 0; j < carteVector.Length; j++)
                 {
-                    if (carteVector[i]!=null&&carteVector[j]!=null)
+                    if (carteVector[i] != null && carteVector[j] != null)
                     {
                         if (j != i && carteVector[i].GetSimbol() == carteVector[j].GetSimbol() && carteVector[j].GetNumar() == carteVector[i].GetNumar())
                         {
                             Console.WriteLine("Cartile trebuie sa fie diferite!");
-                            if (i>0)
+                            if (i > 0)
                             {
                                 i--;
                             }
@@ -163,7 +163,7 @@ namespace Ex._1_Laborator7_
                             break;
                         }
                     }
-                    
+
                 }
             }
             return mana;
